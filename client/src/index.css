@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(0, 0%, 100%);
+  --muted: hsl(0, 0%, 10%);
+  --muted-foreground: hsl(0, 0%, 60%);
+  --popover: hsl(0, 0%, 5%);
+  --popover-foreground: hsl(0, 0%, 100%);
+  --card: hsl(0, 0%, 5%);
+  --card-foreground: hsl(0, 0%, 100%);
+  --border: hsl(0, 0%, 15%);
+  --input: hsl(0, 0%, 15%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(0, 0%, 15%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(0, 0%, 15%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(0, 0%, 100%);
+  --radius: 0.5rem;
+  --vibe-pink: hsl(346, 100%, 68%);
+  --vibe-green: hsl(149, 80%, 70%);
+  --glass: hsla(0, 0%, 100%, 0.05);
+  --glass-border: hsla(0, 0%, 100%, 0.1);
+}
+
+.dark {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(0, 0%, 100%);
+  --muted: hsl(0, 0%, 10%);
+  --muted-foreground: hsl(0, 0%, 60%);
+  --popover: hsl(0, 0%, 5%);
+  --popover-foreground: hsl(0, 0%, 100%);
+  --card: hsl(0, 0%, 5%);
+  --card-foreground: hsl(0, 0%, 100%);
+  --border: hsl(0, 0%, 15%);
+  --input: hsl(0, 0%, 15%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(0, 0%, 15%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(0, 0%, 15%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(0, 0%, 100%);
+  --radius: 0.5rem;
+  --vibe-pink: hsl(346, 100%, 68%);
+  --vibe-green: hsl(149, 80%, 70%);
+  --glass: hsla(0, 0%, 100%, 0.05);
+  --glass-border: hsla(0, 0%, 100%, 0.1);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    background: var(--glass);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-border);
+  }
+  
+  .vibe-pink {
+    color: var(--vibe-pink);
+  }
+  
+  .vibe-green {
+    color: var(--vibe-green);
+  }
+  
+  .bg-vibe-pink {
+    background-color: var(--vibe-pink);
+  }
+  
+  .bg-vibe-green {
+    background-color: var(--vibe-green);
+  }
+  
+  .border-vibe-pink {
+    border-color: var(--vibe-pink);
+  }
+  
+  .border-vibe-green {
+    border-color: var(--vibe-green);
+  }
+  
+  .text-vibe-pink {
+    color: var(--vibe-pink);
+  }
+  
+  .text-vibe-green {
+    color: var(--vibe-green);
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, var(--vibe-pink), var(--vibe-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  .stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect fill="%23000" width="100" height="100"/><g fill-opacity=".3"><circle fill="%23fff" cx="50" cy="50" r="1"/><circle fill="%23fff" cx="10" cy="10" r="1"/><circle fill="%23fff" cx="90" cy="90" r="1"/><circle fill="%23fff" cx="10" cy="90" r="1"/><circle fill="%23fff" cx="90" cy="10" r="1"/></g></svg>');
+    animation: stars 200s linear infinite;
+    z-index: -1;
+  }
+  
+  @keyframes stars {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 5000px; }
+  }
+  
+  .ai-pulse {
+    animation: pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+}
