@@ -1,0 +1,31 @@
+name: Ping Render to Keep Alive
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Every 5 minutes
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Curl Render App
+        run: |
+          # Replace with your actual Render URL
+          APP_URL="${{ secrets.APP_URL || 'https://portfolio-vibecode.onrender.com' }}"
+          
+          echo "Pinging $APP_URL to keep alive..."
+          
+          # Use health endpoint for better monitoring
+          RESPONSE=$(curl -m 10 -s -w "%{http_code}" "$APP_URL/health" || echo "failed")
+          
+          if [[ "$RESPONSE" == *"200"* ]]; then
+            echo "✅ App is alive and healthy"
+          else
+            echo "⚠️ App responded but might have issues: $RESPONSE"
+            # Still try the main URL as fallback
+            curl -m 10 -s "$APP_URL" > /dev/null || echo "❌ Main URL also failed"
+          fi
+
+      - name: Log ping result
+        run: echo "Keep-alive ping completed at $(date)"
