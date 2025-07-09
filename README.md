@@ -109,3 +109,4 @@ This project is currently in a prototype stage and relies on the OpenAI API for 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+# ResumAI
